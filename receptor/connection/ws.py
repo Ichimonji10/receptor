@@ -34,6 +34,10 @@ async def connect(uri, factory, loop=None, ssl_context=None, reconnect=True, ws_
     if not loop:
         loop = asyncio.get_event_loop()
 
+    if ws_extra_headers is None:
+        ws_extra_headers = {}
+    ws_extra_headers.update(get_connect_headers())
+
     worker = factory()
     try:
         async with aiohttp.ClientSession().ws_connect(
@@ -75,3 +79,12 @@ def app(factory):
     app = aiohttp.web.Application()
     app.add_routes([aiohttp.web.get("/", handler)])
     return app
+
+
+def get_connect_headers():
+    # return {"x-rh-identity": "eyJpZGVudGl0eSI6IHsiYWNjb3VudF9udW1iZXIiOiAiMDAwMDAwMSIsICJpbnRlcm5hbCI6IHsib3JnX2lkIjogIjAwMDAwMSJ9fX0="}
+    import base64
+    import json
+    x_rh_identity_decoded = {'identity': {'account_number': '1', 'internal': {'org_id': '1'}}}
+    x_rh_identity_encoded = base64.b64encode(json.dumps(x_rh_identity_decoded).encode()).decode()
+    return {"x-rh-identity": x_rh_identity_encoded}
