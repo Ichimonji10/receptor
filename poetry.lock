@@ -459,6 +459,7 @@ version = "5.3"
 [[package]]
 category = "dev"
 description = ""
+develop = true
 name = "receptor-affinity"
 optional = false
 python-versions = "^3.6"
@@ -479,9 +480,9 @@ typing = "^3.7.4"
 wait-for = "^1.1.1"
 
 [package.source]
-reference = "34660a4a97960a2eb9962a99b6b5721fb1a7429e"
-type = "git"
-url = "https://github.com/project-receptor/affinity.git"
+reference = ""
+type = "directory"
+url = "../affinity"
 
 [[package]]
 category = "dev"
@@ -680,7 +681,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "4527911f59166bc6b01905a216ffa1d8a9ec60c73788319bd3e2c5ec59cead00"
+content-hash = "9abccdcc1cc0db533a90146da91f8e05fcbc1aaf291f60b6f62d39e5f1dc7ad6"
 python-versions = "^3.6"
 
 [metadata.files]
